@@ -17,10 +17,11 @@ type UserProfile = {
   following:number;
 };
 
+
 const GitHubCommits: React.FC<GitHubCommits> = ({ username }) => {
   const [dailyCommits, setDailyCommits] = useState<DailyCommits[]>([]);
   const [loading, setLoading] = useState(false);
-   const[userProfile, setUserProfile]= useState<UserProfile | null>(null);
+   const userProfile= useState<UserProfile | null>(null);
 
   useEffect(() => {
     const fetchCommits = async () => {
@@ -31,7 +32,8 @@ const GitHubCommits: React.FC<GitHubCommits> = ({ username }) => {
 
         const commitMap: { [date: string]: number } = {};
 
-        events.forEach((event: any) => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        events.forEach((event: any ) => {
           if (event.type === "PushEvent") {
             const date = new Date(event.created_at).toISOString().split("T")[0];
             commitMap[date] = (commitMap[date] || 0) + event.payload.commits.length;
@@ -52,10 +54,12 @@ const GitHubCommits: React.FC<GitHubCommits> = ({ username }) => {
     };
 
     fetchCommits();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userProfile]);
 
   return (
-    <div className="border">
+    
+    <div className="border-black">
       <h2 className="text-xl font-bold mb-4">Daily GitHub Commits</h2>
       {loading ? (
         <div className="space-y-2">
