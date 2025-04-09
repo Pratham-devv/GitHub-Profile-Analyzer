@@ -54,8 +54,8 @@ const GitHubCommits: React.FC<GitHubCommits> = ({ username }) => {
     };
 
     fetchCommits();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userProfile]);
+  
+  }, [userProfile,username]);
 
   return (
 
