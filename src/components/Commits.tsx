@@ -21,7 +21,7 @@ type UserProfile = {
 const GitHubCommits: React.FC<GitHubCommits> = ({ username }) => {
   const [dailyCommits, setDailyCommits] = useState<DailyCommits[]>([]);
   const [loading, setLoading] = useState(false);
-   const userProfile= useState<UserProfile | null>(null);
+  const userProfile= useState<UserProfile | null>(null);
 
   useEffect(() => {
     const fetchCommits = async () => {
@@ -58,7 +58,7 @@ const GitHubCommits: React.FC<GitHubCommits> = ({ username }) => {
   }, [userProfile]);
 
   return (
-    
+
     <div className="border-black">
       <h2 className="text-xl font-bold mb-4">Daily GitHub Commits</h2>
       {loading ? (
