@@ -40,7 +40,7 @@ export default function Home(){
             setUserProfile(profile);
             setRepos(repositories);
         }catch(err){
-            setError("User not found");
+            setError("User not found"+err);
             setUserProfile(null);
             setRepos([]);
         }finally{
@@ -79,6 +79,7 @@ export default function Home(){
                         <div>
                             <h2 className="font-medium text-3xl">{userProfile.name}</h2>
                             <p>{userProfile.bio}</p>
+                            
                             <p>{userProfile.followers} | {userProfile.following}</p>
                         </div>
                     </div>
