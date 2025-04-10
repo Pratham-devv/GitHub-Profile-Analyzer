@@ -40,7 +40,7 @@ export default function Home(){
             setUserProfile(profile);
             setRepos(repositories);
         }catch(err){
-            setError("User not found"+err);
+            setError(""+err);
             setUserProfile(null);
             setRepos([]);
         }finally{
@@ -92,7 +92,7 @@ export default function Home(){
                 initial={{opacity:0 }}
                 animate={{opacity:1}} 
                 className="border w-3/4 rounded-b-2xl p-5  md:w-[62%] lg:w-[52%] xl:w-[42%]">
-                      {userProfile && <GitHubCommitChart username={username} />}
+                    {username.length>2 && (<GitHubCommitChart username={username} />)}   
                     <h3 className="text-3xl mb-2">Repositories</h3>
                     <ul >
                         {repos.map((repo)=>(

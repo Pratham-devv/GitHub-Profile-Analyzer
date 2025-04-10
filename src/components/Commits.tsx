@@ -9,19 +9,12 @@ interface DailyCommits {
   date: string;
   count: number;
 }
-type UserProfile = {
-  avatar_url: string;
-  name:string;
-  bio:string;
-  followers:number;
-  following:number;
-};
 
 
 const GitHubCommits: React.FC<GitHubCommits> = ({ username }) => {
   const [dailyCommits, setDailyCommits] = useState<DailyCommits[]>([]);
   const [loading, setLoading] = useState(false);
-  const userProfile= useState<UserProfile | null>(null);
+
 
   useEffect(() => {
     const fetchCommits = async () => {
@@ -55,16 +48,16 @@ const GitHubCommits: React.FC<GitHubCommits> = ({ username }) => {
 
     fetchCommits();
   
-  }, [userProfile,username]);
+  }, [username]);
 
   return (
 
-    <div className="border-black">
-      <h2 className="text-xl font-bold mb-4">Daily GitHub Commits</h2>
+    <div className="pb-4 px-2 rounded-xl shadow-md w-full">
+      <h2 className="text-2xl font-bold mb-4">Daily GitHub Commits</h2>
       {loading ? (
-        <div className="space-y-2">
+        <div className="space-y-2 ">
           {[...Array(5)].map((_, i) => (
-            <Skeleton key={i} className="h-6 w-full" />
+            <Skeleton key={i} className="h-6 w-full bg-transparent" />
           ))}
         </div>
       ) : dailyCommits.length === 0 ? (
